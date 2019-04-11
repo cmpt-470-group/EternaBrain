@@ -13,7 +13,7 @@ import tensorflow as tf
 import pickle
 from random import shuffle
 
-NAME = 'locationCNNX'
+NAME = 'locationCNNReLU'
 NUM_FEATURES = 8
 TRAIN_KEEP_PROB = 0.9
 TEST_KEEP_PROB = 1.0
@@ -296,11 +296,11 @@ def convNeuralNet(x):
     # conv15 = maxpool2d(conv15)
 
     fc1 = tf.reshape(conv10, [-1, 1024])
-    fc1 = tf.nn.sigmoid(tf.add(tf.matmul(fc1, weights['w_fc1']), biases['b_fc1']))
+    fc1 = tf.nn.relu(tf.add(tf.matmul(fc1, weights['w_fc1']), biases['b_fc1']))
 
-    fc2 = tf.nn.sigmoid(tf.add(tf.matmul(fc1, weights['w_fc2']), biases['b_fc2']))
+    fc2 = tf.nn.relu(tf.add(tf.matmul(fc1, weights['w_fc2']), biases['b_fc2']))
 
-    fc3 = tf.nn.sigmoid(tf.add(tf.matmul(fc2, weights['w_fc3']), biases['b_fc3']))
+    fc3 = tf.nn.relu(tf.add(tf.matmul(fc2, weights['w_fc3']), biases['b_fc3']))
 
     #fc4 = tf.nn.sigmoid(tf.add(tf.matmul(fc3, weights['w_fc4']), biases['b_fc4']))
 
